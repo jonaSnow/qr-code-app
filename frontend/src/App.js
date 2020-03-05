@@ -12,20 +12,15 @@ class App extends React.Component {
     answer2: "" };
     }
     
-  onAnswer1Change = e => {
+  onTextChange = e => {
     const answer1 = e.target.value;
     this.setState(() => ({ answer1 }));
-  };
-
-  onAnswer2Change = e => {
-    const answer2 = e.target.value;
-    this.setState(() => ({ answer2 }));
   };
   
   handleSubmit = e =>{
     e.preventDefault();
     const url ="https://jsonplaceholder.typicode.com/posts"
-    const data = { answer1:this.state.answer1, answer2:this.state.answer2 }
+    const data = { answer1:this.state.answer1 }
     fetch(url, { method: "POST",
       body: JSON.stringify(data),
       headers:{ "Content-type": "application/json" } })
@@ -35,32 +30,27 @@ class App extends React.Component {
     }
 
   render() {
-    return (
-      <div className="App">
-        <h1>{this.state.title}</h1>
-        <form className="form" onSubmit={this.handleSubmit}>
-          <label>
-            {this.state.question1}
+    return ( 
+      <div className="container-fluid">
+         <h1 className="mx-auto">{this.state.title}</h1>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label>{this.state.question1}</label>
             <input
+              className="form-control" 
               type="text"
               placeholder="Answer"
               autoFocus
-              onChange={this.onAnswer1Change}
-            />
-          </label>
-
-          <label>
-            {this.state.question2}
-            <input
-              type="text"
-              placeholder="Answer"
-              autoFocus
-              onChange={this.onAnswer2Change}
-            />
-          </label>
+              onChange={this.onTextChange}/>
+          </div>
+          <div className="form-group">
+            <label>Comment</label>
+            <textarea className="form-control"rows="2"></textarea>
+          </div>
           <button>Submit</button>
         </form>
       </div>
+
     );
   }
 }
