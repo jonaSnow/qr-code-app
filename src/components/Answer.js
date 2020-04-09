@@ -1,19 +1,19 @@
 import React from "react";
 
-const QuestionAndAnswer = props => {
+const Answer = props => {
   return (
-    <div className="formGroup" style={{padding: '1rem 0'}}>
-      <label>{props.question}</label>
+    <div>
       <input
         className="form-control"
         type="number"
+        name={props.id}
         placeholder="Answer"
         autoFocus
         onChange={props.handleAnswerEvent}
-        value={props.answer}
+        value={props.value}
       />
     </div>
   );
 };
 
-export default QuestionAndAnswer;
+export default Answer;

@@ -1,10 +1,10 @@
 import React from "react";
-import QuestionAndAnswer from "./QuestionAndAnswer";
+import Question from "./Question";
+import Answer from "./Answer";
 
 export default class Survey extends React.Component {
   constructor() {
     super();
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       title: "Poster 1",
       id: 1,
@@ -15,6 +15,9 @@ export default class Survey extends React.Component {
       question: "Why am I here?",
       answer: ""
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onTextChange = this.onTextChange.bind(this);
   }
 
   handleSubmit = e => {
@@ -30,39 +33,52 @@ export default class Survey extends React.Component {
       .then(response => console.log("Success:", response));
   };
 
-  onTextChange = e => {
+  onAnswerChange = e => {
     const answer = e.target.value;
-    this.setState(() => ( { answer } ));
+    this.setState(() => ({ answer }));
   };
 
-  onUpdateComment = e => {
-    const comment = e.target.value;
-    this.setState(() => ( { comment }));
+  onTextChange = e => {
+    // Uses "[]" and name attribute to set state value
+    this.setState({ [e.target.name]: e.target.value });
   };
-  
+
   render() {
     return (
       <div className="container-fluid">
         <h1 className="mx-auto">{this.state.title}</h1>
-        <form 
+        <form
           onSubmit={this.handleSubmit}
-          style={{display: 'grid', gridGap: '1rem', justifyContent: 'center'}}>
+          style={{ display: "grid", gridGap: "1rem", justifyContent: "center" }}
+        >
           <div className="form-group">
-          <label>User:</label>
+            <label>User:</label>
             <input
               className="form-control"
+              name="Email"
               type="email"
               placeholder="Email"
               defaultValue={this.state.user}
+              onChange={this.onTextChange}
             />
-              <QuestionAndAnswer
-                key={this.state.question_id}
-                question={this.state.question}
-                value={this.state.answer}
-                handleAnswerEvent={this.onTextChange.bind(this)} 
+            <div className="formGroup" style={{ padding: "1rem 0" }}>
+              <Question
+                name={this.state.question_id}
+                content={this.state.question}
               />
+              <Answer
+                name={this.state.question_id}
+                value={this.state.answer}
+                handleAnswerEvent={this.onAnswerChange}
+              />
+            </div>
             <label>Comment:</label>
-            <textarea className="form-control" rows="2" onChange={this.onUpdateComment.bind(this)}></textarea>
+            <textarea
+              className="form-control"
+              name="Comment"
+              rows="2"
+              onChange={this.onTextChange}
+            ></textarea>
           </div>
           <button>Submit</button>
         </form>

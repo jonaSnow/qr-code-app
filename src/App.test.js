@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
+import Survey from './components/Survey';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders Poster 1', () => {
+  const { getByText } = render(<Survey />);
+  const posterName = getByText(/Poster 1/i);
+  expect(posterName).toBeInTheDocument();
 });
