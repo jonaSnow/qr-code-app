@@ -6,9 +6,8 @@ const Answer = props => {
       <input
         className="form-control"
         type="number"
-        name={props.id}
+        id={props.id}
         placeholder="Answer"
-        autoFocus
         onChange={props.handleAnswerEvent}
         value={props.value}
       />

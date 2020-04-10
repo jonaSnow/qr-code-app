@@ -1,6 +1,7 @@
 import React from "react";
 import Question from "./Question";
 import Answer from "./Answer";
+import uuid from "react-uuid";
 
 export default class Survey extends React.Component {
   constructor() {
@@ -11,34 +12,82 @@ export default class Survey extends React.Component {
       qr_id: "332434%fgd",
       user: "test@test.com",
       comment: "",
-      question_id: 1,
-      question: "Why am I here?",
-      answer: ""
+      questionaire: [
+        {
+          question_id: 1,
+          question: "Why?",
+          answer: "",
+        },
+        {
+          question_id: 2,
+          question: "Who?",
+          answer: "",
+        },
+        {
+          question_id: 3,
+          question: "How?",
+          answer: "",
+        },
+        {
+          question_id: 4,
+          question: "When?",
+          answer: "",
+        },
+        {
+          question_id: 5,
+          question: "What?",
+          answer: "",
+        },
+        {
+          question_id: 6,
+          question: "Where?",
+          answer: "",
+        },
+        {
+          question_id: 7,
+          question: "Why is that?",
+          answer: "",
+        },
+      ],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onTextChange = this.onTextChange.bind(this);
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     const url = "https://jsonplaceholder.typicode.com/posts";
     fetch(url, {
       method: "POST",
       body: JSON.stringify(this.state),
-      headers: { "Content-type": "application/json" }
+      headers: { "Content-type": "application/json" },
     })
-      .then(res => res.json())
-      .catch(error => console.error("Error:", error))
-      .then(response => console.log("Success:", response));
+      .then((res) => res.json())
+      .catch((error) => console.error("Error:", error))
+      .then((response) => console.log("Success:", response));
   };
 
-  onAnswerChange = e => {
-    const answer = e.target.value;
-    this.setState(() => ({ answer }));
+  onAnswerChange = (e) => {
+    const value = e.target.value;
+    const id = parseInt(e.target.id);
+
+    const elementsIndex = this.state.questionaire.findIndex(
+      (element) => element.question_id === id
+    );
+
+    let newArray = [...this.state.questionaire];
+    newArray[elementsIndex] = {
+      ...newArray[elementsIndex],
+      answer: value,
+    };
+
+    this.setState({
+      questionaire: newArray,
+    });
   };
 
-  onTextChange = e => {
+  onTextChange = (e) => {
     // Uses "[]" and name attribute to set state value
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -61,17 +110,20 @@ export default class Survey extends React.Component {
               defaultValue={this.state.user}
               onChange={this.onTextChange}
             />
-            <div className="formGroup" style={{ padding: "1rem 0" }}>
-              <Question
-                name={this.state.question_id}
-                content={this.state.question}
-              />
-              <Answer
-                name={this.state.question_id}
-                value={this.state.answer}
-                handleAnswerEvent={this.onAnswerChange}
-              />
-            </div>
+            {this.state.questionaire.map((item) => (
+              <div
+                key={uuid()}
+                className="formGroup"
+                style={{ padding: "1rem 0" }}
+              >
+                <Question id={item.question_id} content={item.question} />
+                <Answer
+                  id={item.question_id}
+                  handleAnswerEvent={this.onAnswerChange.bind(this)}
+                  value={item.answer}
+                />
+              </div>
+            ))}
             <label>Comment:</label>
             <textarea
               className="form-control"
