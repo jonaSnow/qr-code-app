@@ -1,7 +1,7 @@
 import React from "react";
-import Question from "./Question";
-import Answer from "./Answer";
-import uuid from "react-uuid";
+import QuestionsAndAnswersList from "./QuestionsAndAnswersList";
+import User from "./User";
+import UserComments from "./UserComments";
 
 export default class Survey extends React.Component {
   constructor() {
@@ -53,6 +53,7 @@ export default class Survey extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onTextChange = this.onTextChange.bind(this);
+    this.onAnswerChange = this.onAnswerChange.bind(this);
   }
 
   handleSubmit = (e) => {
@@ -101,36 +102,18 @@ export default class Survey extends React.Component {
           style={{ display: "grid", gridGap: "1rem", justifyContent: "center" }}
         >
           <div className="form-group">
-            <label>User:</label>
-            <input
-              className="form-control"
-              name="Email"
-              type="email"
-              placeholder="Email"
-              defaultValue={this.state.user}
-              onChange={this.onTextChange}
+            <User 
+              onChange={this.onTextChange} 
+              value={this.state.user} 
             />
-            {this.state.questionaire.map((item) => (
-              <div
-                key={uuid()}
-                className="formGroup"
-                style={{ padding: "1rem 0" }}
-              >
-                <Question id={item.question_id} content={item.question} />
-                <Answer
-                  id={item.question_id}
-                  handleAnswerEvent={this.onAnswerChange.bind(this)}
-                  value={item.answer}
-                />
-              </div>
-            ))}
-            <label>Comment:</label>
-            <textarea
-              className="form-control"
-              name="Comment"
-              rows="2"
+            <QuestionsAndAnswersList
+              QuestAndAnswList={this.state.questionaire}
+              handleAnswerEvent={this.onAnswerChange}
+            />
+            <UserComments
               onChange={this.onTextChange}
-            ></textarea>
+              value={this.state.comment}
+            />
           </div>
           <button>Submit</button>
         </form>
