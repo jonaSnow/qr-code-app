@@ -2,6 +2,7 @@ import React from "react";
 import QuestionsAndAnswersList from "./QuestionsAndAnswersList";
 import User from "./User";
 import UserComments from "./UserComments";
+import QRCodeLink from "./QRCodeLink";
 
 export default class Survey extends React.Component {
   constructor() {
@@ -10,6 +11,7 @@ export default class Survey extends React.Component {
       title: "Poster 1",
       id: 1,
       qr_id: "332434%fgd",
+      qr_value: "",
       user: "test@test.com",
       comment: "",
       questionaire: [
@@ -93,6 +95,17 @@ export default class Survey extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  downloadQrCode = () => {
+    const canvas = document.getElementById(this.state.qr_id);
+    const pngUrl = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    let downloadLink = document.createElement("a");
+    downloadLink.href = pngUrl;
+    downloadLink.download = `qrcode${this.state.title}.png`;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  };
+
   render() {
     return (
       <div className="container-fluid">
@@ -102,10 +115,7 @@ export default class Survey extends React.Component {
           style={{ display: "grid", gridGap: "1rem", justifyContent: "center" }}
         >
           <div className="form-group">
-            <User 
-              onChange={this.onTextChange} 
-              value={this.state.user} 
-            />
+            <User onChange={this.onTextChange} value={this.state.user} />
             <QuestionsAndAnswersList
               QuestAndAnswList={this.state.questionaire}
               handleAnswerEvent={this.onAnswerChange}
@@ -115,7 +125,12 @@ export default class Survey extends React.Component {
               value={this.state.comment}
             />
           </div>
-          <button>Submit</button>
+          <button className={"btn btn-primary btn-lg"}>Submit</button>
+          <QRCodeLink
+            value={this.state.qr_value}
+            id={this.state.qr_id}
+            onClick={this.downloadQrCode.bind(this)}
+          />
         </form>
       </div>
     );
