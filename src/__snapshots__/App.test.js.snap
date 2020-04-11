@@ -1,0 +1,239 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Survey Snapshot Test 1`] = `
+<div
+  className="container-fluid"
+>
+  <h1
+    className="mx-auto"
+  >
+    Poster 1
+  </h1>
+  <form
+    onSubmit={[Function]}
+    style={
+      Object {
+        "display": "grid",
+        "gridGap": "1rem",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <div
+      className="form-group"
+    >
+      <div>
+        <label>
+          User:
+        </label>
+        <input
+          className="form-control"
+          defaultValue="test@test.com"
+          name="Email"
+          onChange={[Function]}
+          placeholder="Email"
+          type="email"
+        />
+      </div>
+      <div>
+        <div
+          className="formGroup"
+          style={
+            Object {
+              "padding": "1rem 0",
+            }
+          }
+        >
+          <div>
+            <label
+              id={1}
+            >
+              Why?
+            </label>
+          </div>
+          <div>
+            <input
+              className="form-control"
+              id={1}
+              onChange={[Function]}
+              placeholder="Answer"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="formGroup"
+          style={
+            Object {
+              "padding": "1rem 0",
+            }
+          }
+        >
+          <div>
+            <label
+              id={2}
+            >
+              Who?
+            </label>
+          </div>
+          <div>
+            <input
+              className="form-control"
+              id={2}
+              onChange={[Function]}
+              placeholder="Answer"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="formGroup"
+          style={
+            Object {
+              "padding": "1rem 0",
+            }
+          }
+        >
+          <div>
+            <label
+              id={3}
+            >
+              How?
+            </label>
+          </div>
+          <div>
+            <input
+              className="form-control"
+              id={3}
+              onChange={[Function]}
+              placeholder="Answer"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="formGroup"
+          style={
+            Object {
+              "padding": "1rem 0",
+            }
+          }
+        >
+          <div>
+            <label
+              id={4}
+            >
+              When?
+            </label>
+          </div>
+          <div>
+            <input
+              className="form-control"
+              id={4}
+              onChange={[Function]}
+              placeholder="Answer"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="formGroup"
+          style={
+            Object {
+              "padding": "1rem 0",
+            }
+          }
+        >
+          <div>
+            <label
+              id={5}
+            >
+              What?
+            </label>
+          </div>
+          <div>
+            <input
+              className="form-control"
+              id={5}
+              onChange={[Function]}
+              placeholder="Answer"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="formGroup"
+          style={
+            Object {
+              "padding": "1rem 0",
+            }
+          }
+        >
+          <div>
+            <label
+              id={6}
+            >
+              Where?
+            </label>
+          </div>
+          <div>
+            <input
+              className="form-control"
+              id={6}
+              onChange={[Function]}
+              placeholder="Answer"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          className="formGroup"
+          style={
+            Object {
+              "padding": "1rem 0",
+            }
+          }
+        >
+          <div>
+            <label
+              id={7}
+            >
+              Why is that?
+            </label>
+          </div>
+          <div>
+            <input
+              className="form-control"
+              id={7}
+              onChange={[Function]}
+              placeholder="Answer"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <label>
+          Comment:
+        </label>
+        <textarea
+          className="form-control"
+          name="Comment"
+          onChange={[Function]}
+          rows="2"
+        />
+      </div>
+    </div>
+    <button>
+      Submit
+    </button>
+  </form>
+</div>
+`;
