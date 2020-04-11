@@ -231,9 +231,49 @@ exports[`Survey Snapshot Test 1`] = `
         />
       </div>
     </div>
-    <button>
+    <button
+      className="btn btn-primary btn-lg"
+    >
       Submit
     </button>
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "column",
+          "paddingBottom": "1rem",
+          "textAlign": "center",
+        }
+      }
+    >
+      <a
+        href=""
+        style={
+          Object {
+            "padding": "1rem",
+          }
+        }
+      >
+        <canvas
+          height={128}
+          id="332434%fgd"
+          style={
+            Object {
+              "height": 128,
+              "width": 128,
+            }
+          }
+          width={128}
+        />
+      </a>
+      <button
+        className="btn btn-primary btn-sm"
+        onClick={[Function]}
+        type="button"
+      >
+         Download QR 
+      </button>
+    </div>
   </form>
 </div>
 `;
